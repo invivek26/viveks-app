@@ -1,0 +1,24 @@
+# Vivek Indlebele Narasimha Prasad
+
+Vivek is a founder, CTO, and product engineer based in San Francisco.
+
+## Current work
+
+- Founder and CTO of GameStock, a fantasy stock and crypto tournament platform.
+- Founder and CTO of Zen Shuttles, a campus ride-pooling startup that reached break-even within 15 months.
+- Creator and maintainer of native React Native and Expo packages with 16K+ cumulative npm downloads.
+
+## Canonical pages
+
+- Portfolio: https://viveks.app/
+- GameStock case study: https://viveks.app/work/gamestock
+- Zen Shuttles case study: https://viveks.app/work/zen-shuttles
+- Open source: https://viveks.app/open-source
+- Resume: https://viveks.app/resume
+- Contact: https://viveks.app/connect
+
+## Profiles
+
+- GitHub: https://github.com/invivek26
+- LinkedIn: https://www.linkedin.com/in/vivek-i-n/
+- Email: vivek@gamestock.app
