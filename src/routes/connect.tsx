@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Calendar, Coffee, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Calendar, Coffee, Github, Linkedin, Mail } from "lucide-react";
 
 import { portfolio } from "#/content/portfolio";
 
@@ -9,8 +9,7 @@ export const Route = createFileRoute("/connect")({
       { title: "Connect — Vivek Indlebele" },
       {
         name: "description",
-        content:
-          "Connect with Vivek Indlebele by email, Calendly, LinkedIn, GitHub, or over coffee in San Francisco.",
+        content: "Connect with Vivek Indlebele by email, Calendly, LinkedIn, or GitHub.",
       },
     ],
     links: [{ rel: "canonical", href: "https://viveks.app/connect" }],
@@ -92,15 +91,12 @@ function Connect() {
       <aside className="coffee-note">
         <Coffee aria-hidden="true" />
         <div>
-          <p className="eyebrow">In San Francisco?</p>
+          <p className="eyebrow">Coffee?</p>
           <h2>I’m down for a cup of coffee.</h2>
           <p>
-            Somewhere walkable, an hour without a pitch deck, and a conversation worth continuing.
-            I’m based in San Francisco and usually around the city.
+            If you’re in San Francisco: somewhere walkable, an hour without a pitch deck, and a
+            conversation worth continuing.
           </p>
-          <span>
-            <MapPin aria-hidden="true" /> San Francisco, California
-          </span>
         </div>
       </aside>
     </div>

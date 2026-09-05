@@ -413,8 +413,7 @@ ol {
 .download-link,
 .back-link,
 .footer-links a,
-.playground-links a,
-.coffee-note > div > span {
+.playground-links a {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -425,7 +424,7 @@ ol {
 .back-link svg,
 .footer-links svg,
 .playground-links svg,
-.coffee-note svg {
+.coffee-note > svg {
   width: 1rem;
 }
 
@@ -1526,13 +1525,6 @@ ol {
   margin-top: 1rem;
   color: rgba(248, 246, 239, 0.62);
   line-height: 1.65;
-}
-
-.coffee-note > div > span {
-  margin-top: 1.25rem;
-  color: rgba(248, 246, 239, 0.72);
-  font-size: 0.75rem;
-  font-weight: 650;
 }
 
 .case-study {

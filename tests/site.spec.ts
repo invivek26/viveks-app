@@ -18,6 +18,12 @@ test("home stays visible and contained at every viewport", async ({ page }) => {
 
   expect(layout.bodyWidth).toBeLessThanOrEqual(layout.viewportWidth);
   expect(layout.hiddenReveals).toBe(0);
+  await expect(page.getByText("San Francisco, CA", { exact: true })).toHaveCount(1);
+});
+
+test("location copy appears only where it adds context", async ({ page }) => {
+  await page.goto("/connect");
+  await expect(page.getByText(/San Francisco/)).toHaveCount(1);
 });
 
 test("theme transition and current-work pulse are deliberate", async ({ page }) => {
