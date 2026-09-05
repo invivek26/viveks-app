@@ -6,10 +6,10 @@ import { portfolio } from "#/content/portfolio";
 export const Route = createFileRoute("/connect")({
   head: () => ({
     meta: [
-      { title: "Connect — Vivek Indlebele" },
+      { title: `Connect — ${portfolio.person.name}` },
       {
         name: "description",
-        content: "Connect with Vivek Indlebele by email, Calendly, LinkedIn, or GitHub.",
+        content: `Connect with ${portfolio.person.name} by email, Calendly, LinkedIn, or GitHub.`,
       },
     ],
     links: [{ rel: "canonical", href: "https://viveks.app/connect" }],

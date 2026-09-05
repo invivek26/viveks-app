@@ -2,7 +2,7 @@ import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
 import { Button } from "#/components/ui/button";
-import { getWork } from "#/content/portfolio";
+import { getWork, portfolio } from "#/content/portfolio";
 
 export const Route = createFileRoute("/work/$slug")({
   loader: ({ params }) => {
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/work/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.name} — Vivek Indlebele` },
+          { title: `${loaderData.name} — ${portfolio.person.name}` },
           { name: "description", content: loaderData.summary },
           { property: "og:title", content: `${loaderData.name} — ${loaderData.descriptor}` },
           { property: "og:description", content: loaderData.summary },

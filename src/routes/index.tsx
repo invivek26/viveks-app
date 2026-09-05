@@ -74,7 +74,7 @@ function Home() {
         <div className="portrait-wrap reveal">
           <div className="portrait-frame">
             <img
-              alt="Vivek Indlebele smiling in an office"
+              alt={`${portfolio.person.name} smiling in an office`}
               height="1080"
               src="/vivek.jpg"
               width="1080"

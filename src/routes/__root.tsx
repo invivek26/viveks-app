@@ -57,7 +57,7 @@ export const Route = createRootRoute({
       },
       { name: "theme-color", content: "#f4f1e8" },
       { name: "color-scheme", content: "light dark" },
-      { property: "og:site_name", content: "Vivek Indlebele" },
+      { property: "og:site_name", content: portfolio.person.name },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "https://viveks.app/social-card.png" },
       { name: "twitter:card", content: "summary_large_image" },
