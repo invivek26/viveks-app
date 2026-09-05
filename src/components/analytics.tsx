@@ -42,9 +42,9 @@ export function Analytics() {
     }
 
     if ("requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(() => void start());
+      idleId = window.requestIdleCallback(() => void start().catch(() => {}));
     } else {
-      timeoutId = setTimeout(() => void start(), 1_000);
+      timeoutId = setTimeout(() => void start().catch(() => {}), 1_000);
     }
 
     return () => {

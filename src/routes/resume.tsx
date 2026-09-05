@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Download, Github, Globe, Linkedin, Mail } from "lucide-react";
 
 import { Button } from "#/components/ui/button";
 import { portfolio } from "#/content/portfolio";
@@ -13,6 +13,12 @@ export const Route = createFileRoute("/resume")({
         content:
           "Résumé of Vivek Indlebele Narasimha Prasad, founder, CTO, and product software engineer.",
       },
+      { property: "og:title", content: `Résumé — ${portfolio.person.name}` },
+      {
+        property: "og:description",
+        content: `Résumé of ${portfolio.person.name}, founder, CTO, and product software engineer.`,
+      },
+      { property: "og:url", content: "https://viveks.app/resume" },
     ],
     links: [{ rel: "canonical", href: "https://viveks.app/resume" }],
   }),
@@ -40,6 +46,9 @@ function Resume() {
         <a href={`mailto:${portfolio.person.email}`}>
           <Mail aria-hidden="true" /> {portfolio.person.email}
         </a>
+        <a href={portfolio.social.website}>
+          <Globe aria-hidden="true" /> viveks.app
+        </a>
         <a href={portfolio.social.linkedin} rel="noreferrer" target="_blank">
           <Linkedin aria-hidden="true" /> LinkedIn
         </a>
@@ -50,11 +59,7 @@ function Resume() {
 
       <section className="resume-summary">
         <h2>Summary</h2>
-        <p>
-          Hands-on founder and software engineer building production systems across mobile, backend,
-          payments, analytics, and release engineering. Co-founded two startups, scaled GameStock
-          past 20K users, and maintains React Native packages with 16K+ cumulative npm downloads.
-        </p>
+        <p>{portfolio.person.resumeSummary}</p>
       </section>
 
       <section className="resume-section">
@@ -72,9 +77,9 @@ function Resume() {
                   <span>{work.location}</span>
                 </div>
               </header>
-              <p>{work.summary}</p>
+              <p>{work.resumeDescription}</p>
               <ul>
-                {work.highlights.map((highlight) => (
+                {work.resumeHighlights.map((highlight) => (
                   <li key={highlight}>{highlight}</li>
                 ))}
               </ul>

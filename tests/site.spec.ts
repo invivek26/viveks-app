@@ -1,5 +1,29 @@
 import { expect, test } from "@playwright/test";
 
+test("public pages expose canonical and social metadata", async ({ request }) => {
+  const routes = [
+    "/",
+    "/connect",
+    "/open-source",
+    "/resume",
+    "/work/gamestock",
+    "/work/zen-shuttles",
+  ];
+
+  const pages = await Promise.all(
+    routes.map(async (route) => ({ route, html: await (await request.get(route)).text() })),
+  );
+
+  for (const { route, html } of pages) {
+    expect(html).toContain(`<link rel="canonical" href="https://viveks.app${route}"`);
+    expect(html).toContain(`<meta property="og:url" content="https://viveks.app${route}"`);
+    expect(html).toContain(
+      '<meta property="og:image" content="https://viveks.app/social-card.png"',
+    );
+    expect(html).toMatch(/<meta name="description" content=".+?"/);
+  }
+});
+
 test("home stays visible and contained at every viewport", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "I build products that move." })).toBeVisible();

@@ -849,7 +849,7 @@ ol {
 }
 
 .capability-list li > span {
-  color: rgba(248, 246, 239, 0.45);
+  color: rgba(248, 246, 239, 0.52);
   font-size: 0.68rem;
   font-weight: 750;
 }
@@ -2053,17 +2053,21 @@ ol {
 
 @media print {
   @page {
-    margin: 0.5in;
+    margin: 0.38in 0.48in;
     size: letter;
   }
 
+  html,
   body {
+    min-height: auto;
     color: #111;
     background: #fff;
-    font-size: 9pt;
+    font-family: Arial, sans-serif;
+    font-size: 8.7pt;
   }
 
   body::before,
+  .skip-link,
   .site-header,
   .site-footer,
   .resume-header .primary-button {
@@ -2075,36 +2079,118 @@ ol {
   }
 
   .inner-page {
+    min-height: auto;
     padding: 0;
   }
 
-  .resume-header h1 {
-    font-size: 24pt;
+  .resume-header {
+    display: block;
+    text-align: center;
   }
 
-  .resume-contact,
+  .resume-header .eyebrow {
+    display: none;
+  }
+
+  .resume-header h1 {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 18pt;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .resume-header > div > p:last-child {
+    margin-top: 0.04in;
+    font-size: 9.5pt;
+  }
+
+  .resume-contact {
+    justify-content: center;
+    margin-top: 0.08in;
+    padding-block: 0.06in;
+    gap: 0.04in 0.12in;
+    font-size: 7.4pt;
+  }
+
   .resume-summary,
   .resume-section {
-    padding-block: 0.12in;
+    padding-block: 0.07in;
   }
 
   .resume-summary,
   .resume-section:not(.resume-two-column) {
-    grid-template-columns: 1in 1fr;
-    gap: 0.2in;
+    grid-template-columns: 0.88in 1fr;
+    gap: 0.14in;
+  }
+
+  .resume-summary > h2,
+  .resume-section > h2,
+  .resume-two-column > div > h2 {
+    font-size: 7.2pt;
   }
 
   .resume-summary > p {
-    font-size: 12pt;
+    font-family: Arial, sans-serif;
+    font-size: 9.2pt;
+    line-height: 1.28;
   }
 
   .resume-entries {
-    gap: 0.16in;
+    gap: 0.08in;
+  }
+
+  .resume-entry header {
+    gap: 0.03in;
+  }
+
+  .resume-entry header h3,
+  .resume-packages h3,
+  .education-entry h3,
+  .skill-group h3 {
+    font-size: 9.2pt;
+  }
+
+  .resume-entry header > div:last-child {
+    font-size: 6.7pt;
+  }
+
+  .resume-entry > p,
+  .resume-packages p,
+  .education-entry p,
+  .skill-group p {
+    margin-top: 0.025in;
+    line-height: 1.3;
   }
 
   .resume-entry ul {
-    gap: 0.03in;
-    font-size: 8pt;
+    margin-top: 0.04in;
+    gap: 0.015in;
+    font-size: 8.1pt;
+    line-height: 1.28;
+  }
+
+  .resume-packages {
+    gap: 0.05in;
+  }
+
+  .resume-packages span {
+    margin-top: 0.02in;
+    font-size: 6.5pt;
+  }
+
+  .resume-two-column {
+    gap: 0.3in;
+  }
+
+  .resume-two-column > div {
+    gap: 0.07in;
+  }
+
+  .education-entry span {
+    margin-top: 0.02in;
+    font-size: 6.6pt;
   }
 
   a {

@@ -16,6 +16,7 @@ export const Route = createFileRoute("/open-source")({
         property: "og:description",
         content: "Native interactions packaged for the React Native community.",
       },
+      { property: "og:url", content: "https://viveks.app/open-source" },
     ],
     links: [{ rel: "canonical", href: "https://viveks.app/open-source" }],
   }),

@@ -11,6 +11,12 @@ export const Route = createFileRoute("/connect")({
         name: "description",
         content: `Connect with ${portfolio.person.name} by email, Calendly, LinkedIn, or GitHub.`,
       },
+      { property: "og:title", content: `Connect — ${portfolio.person.name}` },
+      {
+        property: "og:description",
+        content: `Connect with ${portfolio.person.name} by email, Calendly, LinkedIn, or GitHub.`,
+      },
+      { property: "og:url", content: "https://viveks.app/connect" },
     ],
     links: [{ rel: "canonical", href: "https://viveks.app/connect" }],
   }),
@@ -69,6 +75,7 @@ function Connect() {
           <a
             className="connect-card"
             data-analytics={option.event}
+            data-analytics-label={option.label}
             href={option.href}
             key={option.title}
             rel="noreferrer"

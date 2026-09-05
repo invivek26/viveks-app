@@ -17,6 +17,7 @@ export const Route = createFileRoute("/work/$slug")({
           { name: "description", content: loaderData.summary },
           { property: "og:title", content: `${loaderData.name} — ${loaderData.descriptor}` },
           { property: "og:description", content: loaderData.summary },
+          { property: "og:url", content: `https://viveks.app/work/${loaderData.slug}` },
         ]
       : [],
     links: loaderData

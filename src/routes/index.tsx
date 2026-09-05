@@ -16,6 +16,7 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:title", content: `${portfolio.person.name} — I build products that move` },
       { property: "og:description", content: portfolio.person.summary },
+      { property: "og:url", content: "https://viveks.app/" },
     ],
     links: [{ rel: "canonical", href: "https://viveks.app/" }],
   }),
@@ -75,6 +76,8 @@ function Home() {
           <div className="portrait-frame">
             <img
               alt={`${portfolio.person.name} smiling in an office`}
+              decoding="async"
+              fetchPriority="high"
               height="1080"
               src="/vivek.jpg"
               width="1080"
