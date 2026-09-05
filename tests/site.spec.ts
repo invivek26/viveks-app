@@ -72,6 +72,26 @@ test("hero metadata shares one text column", async ({ page }) => {
   expect(Math.abs((textStarts[0] ?? 0) - (textStarts[1] ?? 0))).toBeLessThanOrEqual(1);
 });
 
+test("header keeps the full name on one mobile line", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.goto("/");
+
+  const name = page.locator(".wordmark-name");
+  await expect(name).toHaveText("Vivek Indlebele Narasimha Prasad");
+  const layout = await name.evaluate((element) => {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    return {
+      lineCount: range.getClientRects().length,
+      nameRight: range.getBoundingClientRect().right,
+      toggleLeft: document.querySelector(".theme-toggle")?.getBoundingClientRect().left ?? 0,
+    };
+  });
+
+  expect(layout.lineCount).toBe(1);
+  expect(layout.nameRight).toBeLessThan(layout.toggleLeft);
+});
+
 test("work-card proof labels stay on one line", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 844 });
   await page.goto("/");

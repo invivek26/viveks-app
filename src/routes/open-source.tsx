@@ -1,17 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { PackagePlayground } from "#/components/package-playground";
+import { portfolio } from "#/content/portfolio";
 
 export const Route = createFileRoute("/open-source")({
   head: () => ({
     meta: [
-      { title: "Open source — Vivek Indlebele" },
+      { title: `Open source — ${portfolio.person.name}` },
       {
         name: "description",
-        content:
-          "Native React Native and Expo packages by Vivek Indlebele, with interactive web demonstrations.",
+        content: `Native React Native and Expo packages by ${portfolio.person.name}, with interactive web demonstrations.`,
       },
-      { property: "og:title", content: "Open source — Vivek Indlebele" },
+      { property: "og:title", content: `Open source — ${portfolio.person.name}` },
       {
         property: "og:description",
         content: "Native interactions packaged for the React Native community.",

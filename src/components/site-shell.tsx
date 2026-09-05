@@ -69,7 +69,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <Terminal aria-hidden="true" /> Terminal
             </a>
           </div>
-          <p className="footer-note">© 2026 Vivek Indlebele</p>
+          <p className="footer-note">© 2026 {portfolio.person.name}</p>
         </div>
       </footer>
       <Analytics />
