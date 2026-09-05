@@ -18,7 +18,8 @@
     "check": "bun run format:check && bun run lint && bun run typecheck",
     "test": "bun test src/content/portfolio.test.ts",
     "doctor": "react-doctor . --no-supply-chain",
-    "qa": "playwright test"
+    "qa": "playwright test",
+    "resume:pdf": "bun run build && bun run scripts/export-resume.ts"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.3.0",

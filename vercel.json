@@ -1,5 +1,28 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/github", "destination": "https://github.com/invivek26", "permanent": true },
+    {
+      "source": "/linkedin",
+      "destination": "https://www.linkedin.com/in/vivek-i-n/",
+      "permanent": true
+    },
+    {
+      "source": "/npm",
+      "destination": "https://www.npmjs.com/~invicky26",
+      "permanent": true
+    },
+    {
+      "source": "/terminal",
+      "destination": "https://terminal.viveks.app",
+      "permanent": true
+    },
+    {
+      "source": "/coffee",
+      "destination": "https://calendly.com/vivek-gamestock",
+      "permanent": true
+    }
+  ],
   "framework": "tanstack-start",
   "headers": [
     {
@@ -11,6 +34,12 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+        },
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
+        { "key": "Cross-Origin-Resource-Policy", "value": "same-origin" },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; base-uri 'self'; connect-src 'self' https://*.posthog.com; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests"
         }
       ]
     }

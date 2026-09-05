@@ -6,6 +6,8 @@ export type PortfolioWork = {
   period: string;
   location: string;
   summary: string;
+  resumeDescription: string;
+  resumeHighlights: ReadonlyArray<string>;
   heroMetric: string;
   heroLabel: string;
   challenge: string;
@@ -35,8 +37,11 @@ export const portfolio = {
     calendly: "https://calendly.com/vivek-gamestock",
     summary:
       "I turn ambitious ideas into products people can actually use—from the first prototype through payments, analytics, releases, and scale.",
+    resumeSummary:
+      "Hands-on founder and software engineer building production systems across mobile, backend, payments, analytics, and release engineering. Co-founded two startups, scaled GameStock past 20K users, and maintains React Native packages with 16K+ cumulative npm downloads.",
   },
   social: {
+    website: "https://viveks.app",
     github: "https://github.com/invivek26",
     linkedin: "https://www.linkedin.com/in/vivek-i-n/",
     terminal: "https://terminal.viveks.app",
@@ -83,6 +88,15 @@ export const portfolio = {
       location: "San Francisco, CA",
       summary:
         "A fantasy stock and crypto tournament platform where players compete on market insight, not starting capital.",
+      resumeDescription:
+        "Fantasy stock and crypto tournament platform; raised a $2M pre-seed round led by Peak XV Partners.",
+      resumeHighlights: [
+        "Led product and engineering as GameStock grew past 20K users and 10.6K monthly active users, earning a 4.8/5 Google Play rating across 440+ reviews.",
+        "Built tournament and live market systems behind 150K+ tracked tournament joins; reduced median transaction broadcast latency from 2.95 seconds to 0.9 seconds.",
+        "Designed wallet and payment infrastructure supporting 2K+ transacting users and 16K+ completed payment events across funding, escrow, reconciliation, refunds, and payouts.",
+        "Modernized mobile architecture across data, styling, and bundle delivery; cut Hermes bytecode 16%, module output 27%, and boot modules from 9,285 to 6,640.",
+        "Established analytics and release engineering with PostHog, AppsFlyer, Sentry, automated native and backend deployments, and 18 critical E2E flows; recent CI averaged 2.5 minutes with 95%+ success across 1K+ monthly runs.",
+      ],
       heroMetric: "20K+",
       heroLabel: "users built from zero",
       challenge:
@@ -129,6 +143,13 @@ export const portfolio = {
       location: "Tempe, AZ",
       summary:
         "A campus ride-pooling service that coordinated riders, drivers, schedules, and real-time operations around Arizona State University; reached break-even in 15 months and secured $31K across four ASU venture awards.",
+      resumeDescription:
+        "Campus ride-pooling startup serving Arizona State University; reached break-even within 15 months, secured $31K across four ASU venture awards, and won first place at the ASU Tech Devils Pitch Showcase.",
+      resumeHighlights: [
+        "Built and launched rider and driver mobile apps plus a real-time operations dashboard using React Native, React, Firebase, Stripe, and Google Cloud.",
+        "Designed the dispatch and scheduling engine to group nearby demand, enforce vehicle capacity, and deliver routes and ETAs to drivers in real time.",
+        "Reduced mapping API usage through autocomplete caching, session tokens, and removal of redundant route requests; also shipped memberships, payments, referrals, promotions, push messaging, and operating analytics.",
+      ],
       heroMetric: "15 mo",
       heroLabel: "from launch to break-even",
       challenge:

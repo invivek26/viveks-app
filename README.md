@@ -30,6 +30,9 @@ typed content module.
 Optional PostHog values are documented in `.env.example`. Analytics loads after the page becomes interactive, stays
 cookieless, disables person profiles and session replay, and captures only explicitly named interactions.
 
+The web résumé and downloadable PDF both read from the same portfolio module. Regenerate the one-page PDF after content
+changes with `bun run resume:pdf`.
+
 ## Delivery
 
 Pull requests run Oxfmt, Oxlint, TypeScript, tests, Playwright across Chromium, Firefox, WebKit, Pixel 7, and iPhone 13,

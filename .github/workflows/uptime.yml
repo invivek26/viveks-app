@@ -1,0 +1,36 @@
+name: Uptime
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check public routes
+        run: |
+          for url in \
+            https://viveks.app/ \
+            https://viveks.app/connect \
+            https://viveks.app/open-source \
+            https://viveks.app/resume \
+            https://viveks.app/vivek-resume.pdf \
+            https://viveks.app/work/gamestock \
+            https://viveks.app/work/zen-shuttles \
+            https://terminal.viveks.app/ \
+            https://kshama.viveks.app/ \
+            https://vivek.zip/resume \
+            https://vivek.zip/github \
+            https://vivek.zip/linkedin \
+            https://vivek.zip/npm \
+            https://vivek.zip/terminal \
+            https://vivek.zip/coffee
+          do
+            curl --fail --silent --show-error --retry 2 --max-time 20 --location "$url" >/dev/null
+          done
