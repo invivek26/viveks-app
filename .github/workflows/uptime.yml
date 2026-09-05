@@ -24,7 +24,12 @@ jobs:
             https://viveks.app/work/gamestock \
             https://viveks.app/work/zen-shuttles \
             https://terminal.viveks.app/ \
-            https://kshama.viveks.app/ \
+            https://kshama.viveks.app/
+          do
+            curl --fail --silent --show-error --retry 2 --max-time 20 --location "$url" >/dev/null
+          done
+
+          for url in \
             https://vivek.zip/resume \
             https://vivek.zip/github \
             https://vivek.zip/linkedin \
@@ -32,5 +37,5 @@ jobs:
             https://vivek.zip/terminal \
             https://vivek.zip/coffee
           do
-            curl --fail --silent --show-error --retry 2 --max-time 20 --location "$url" >/dev/null
+            curl --fail --silent --show-error --retry 2 --max-time 20 --head "$url" >/dev/null
           done
