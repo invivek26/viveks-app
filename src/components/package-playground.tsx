@@ -1,12 +1,174 @@
 import { ArrowUpRight, BellRing, Github, RotateCcw } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Button } from "#/components/ui/button";
 import { portfolio } from "#/content/portfolio";
 
+const digits = Array.from({ length: 10 }, (_, digit) => digit);
+const numberTargets = [20_000, 32_547, 150_000, 10_600];
+const tickerItems = [
+  "GME +4.82%",
+  "NVDA +2.31%",
+  "BTC +1.09%",
+  "AAPL +0.74%",
+  "TSLA −1.21%",
+  "ETH +2.04%",
+];
+
+function RollingNumber({ value }: { value: number }) {
+  const characters = value.toLocaleString("en-US").split("");
+
+  return (
+    <output aria-label={value.toLocaleString("en-US")} className="rolling-number">
+      {characters.map((character, position) =>
+        character === "," ? (
+          <span className="number-separator" key={`place-${characters.length - position}`}>
+            ,
+          </span>
+        ) : (
+          <span className="digit-window" key={`place-${characters.length - position}`}>
+            <span
+              className="digit-reel"
+              style={{ transform: `translate3d(0, -${Number(character)}em, 0)` }}
+            >
+              {digits.map((digit) => (
+                <span key={digit}>{digit}</span>
+              ))}
+            </span>
+          </span>
+        ),
+      )}
+    </output>
+  );
+}
+
+function KineticMarquee() {
+  const viewportRef = useRef<HTMLButtonElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    const track = trackRef.current;
+    if (!viewport || !track) return;
+
+    let frame = 0;
+    let groupWidth = 0;
+    let offset = 0;
+    let velocity = -38;
+    let dragging = false;
+    let lastPointerX = 0;
+    let lastPointerTime = 0;
+    let lastFrameTime = performance.now();
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function measure() {
+      groupWidth = track?.querySelector<HTMLElement>(".marquee-group")?.offsetWidth ?? 0;
+    }
+
+    function render() {
+      if (!track || !groupWidth) return;
+      while (offset <= -groupWidth) offset += groupWidth;
+      while (offset > 0) offset -= groupWidth;
+      track.style.transform = `translate3d(${offset}px, 0, 0)`;
+    }
+
+    function animate(now: number) {
+      const elapsed = Math.min((now - lastFrameTime) / 1_000, 0.05);
+      lastFrameTime = now;
+
+      if (!dragging && !reducedMotion) {
+        velocity += (-38 - velocity) * Math.min(1, elapsed * 1.8);
+        offset += velocity * elapsed;
+        render();
+      }
+
+      frame = requestAnimationFrame(animate);
+    }
+
+    function beginDrag(event: PointerEvent) {
+      dragging = true;
+      lastPointerX = event.clientX;
+      lastPointerTime = performance.now();
+      viewport?.setPointerCapture(event.pointerId);
+      viewport?.setAttribute("data-dragging", "true");
+    }
+
+    function drag(event: PointerEvent) {
+      if (!dragging) return;
+      const now = performance.now();
+      const elapsed = Math.max(now - lastPointerTime, 8);
+      const distance = event.clientX - lastPointerX;
+      offset += distance;
+      velocity = Math.max(-1_200, Math.min(1_200, (distance / elapsed) * 1_000));
+      lastPointerX = event.clientX;
+      lastPointerTime = now;
+      render();
+    }
+
+    function endDrag(event: PointerEvent) {
+      if (!dragging) return;
+      dragging = false;
+      if (viewport?.hasPointerCapture(event.pointerId))
+        viewport.releasePointerCapture(event.pointerId);
+      viewport?.setAttribute("data-dragging", "false");
+    }
+
+    function accelerate(event: KeyboardEvent) {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      event.preventDefault();
+      velocity += event.key === "ArrowLeft" ? -260 : 260;
+    }
+
+    const observer = new ResizeObserver(() => {
+      measure();
+      render();
+    });
+
+    observer.observe(viewport);
+    measure();
+    viewport.addEventListener("pointerdown", beginDrag);
+    viewport.addEventListener("pointermove", drag);
+    viewport.addEventListener("pointerup", endDrag);
+    viewport.addEventListener("pointercancel", endDrag);
+    viewport.addEventListener("keydown", accelerate);
+    frame = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      viewport.removeEventListener("pointerdown", beginDrag);
+      viewport.removeEventListener("pointermove", drag);
+      viewport.removeEventListener("pointerup", endDrag);
+      viewport.removeEventListener("pointercancel", endDrag);
+      viewport.removeEventListener("keydown", accelerate);
+    };
+  }, []);
+
+  return (
+    <button
+      aria-label="Draggable market ticker. Drag left or right, or use the arrow keys."
+      className="marquee-window"
+      data-dragging="false"
+      data-kinetic-marquee
+      ref={viewportRef}
+      type="button"
+    >
+      <div className="marquee-content" ref={trackRef}>
+        {[0, 1, 2].map((copy) => (
+          <div aria-hidden={copy !== 0} className="marquee-group" key={copy}>
+            {tickerItems.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </div>
+        ))}
+      </div>
+      <span className="marquee-hint">Drag · flick · arrow keys</span>
+    </button>
+  );
+}
+
 export function PackagePlayground() {
-  const [number, setNumber] = useState(20_000);
-  const [speed, setSpeed] = useState(14);
+  const [numberIndex, setNumberIndex] = useState(0);
 
   return (
     <div className="playground-list">
@@ -56,14 +218,10 @@ export function PackagePlayground() {
 
             {item.demo === "number" ? (
               <div className="number-demo">
-                <span aria-live="polite" key={number}>
-                  {number.toLocaleString("en-US")}
-                </span>
+                <RollingNumber value={numberTargets[numberIndex] ?? numberTargets[0]} />
                 <Button
-                  aria-label="Animate to a new number"
-                  onClick={() =>
-                    setNumber((current) => (current >= 99_999 ? 20_000 : current + 12_547))
-                  }
+                  aria-label="Roll to a new number"
+                  onClick={() => setNumberIndex((current) => (current + 1) % numberTargets.length)}
                   size="icon"
                   type="button"
                   variant="outline"
@@ -73,35 +231,7 @@ export function PackagePlayground() {
               </div>
             ) : null}
 
-            {item.demo === "marquee" ? (
-              <div className="marquee-demo">
-                <div className="marquee-window">
-                  <div
-                    className="marquee-content"
-                    style={{ "--marquee-speed": `${speed}s` } as React.CSSProperties}
-                  >
-                    {[0, 1].map((copy) => (
-                      <div aria-hidden={copy === 1} className="marquee-group" key={copy}>
-                        <span>GME +4.82%</span>
-                        <span>NVDA +2.31%</span>
-                        <span>BTC +1.09%</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <label>
-                  <span>Speed</span>
-                  <input
-                    aria-label="Marquee speed"
-                    max="24"
-                    min="6"
-                    onChange={(event) => setSpeed(Number(event.target.value))}
-                    type="range"
-                    value={speed}
-                  />
-                </label>
-              </div>
-            ) : null}
+            {item.demo === "marquee" ? <KineticMarquee /> : null}
           </div>
         </article>
       ))}

@@ -7,4 +7,4 @@
 - Prefer semantic HTML, native browser behavior, and CSS over JavaScript or new dependencies.
 - Preserve keyboard access, visible focus, reduced-motion behavior, and mobile layouts.
 - Analytics must remain anonymous, cookieless, and free of session replay or personal profiles.
-- Before shipping, run `bun run check`, `bun test`, `bun run build`, and `bun run doctor`.
+- Before shipping, run `bun run check`, `bun run test`, `bun run qa`, `bun run build`, and `bun run doctor`.

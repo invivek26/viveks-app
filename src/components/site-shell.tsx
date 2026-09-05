@@ -14,9 +14,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
       </a>
       <header className="site-header">
         <div className="shell header-inner">
-          <Link aria-label="Vivek Indlebele, home" className="wordmark" to="/">
-            <span className="wordmark-mark">{portfolio.person.initials}</span>
-            <span className="wordmark-name">{portfolio.person.shortName}</span>
+          <Link aria-label={`${portfolio.person.name}, home`} className="wordmark" to="/">
+            <img alt="" className="wordmark-image" height="80" src="/vivek.jpg" width="80" />
+            <span className="wordmark-name">{portfolio.person.name}</span>
           </Link>
           <nav aria-label="Primary navigation" className="primary-nav">
             <a href="/#work">Work</a>

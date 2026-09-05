@@ -35,8 +35,17 @@ function toggleTheme(event: React.MouseEvent<HTMLButtonElement>) {
   const nextTheme = document.documentElement.classList.contains("dark") ? "light" : "dark";
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (!document.startViewTransition || reduceMotion) {
+  if (reduceMotion) {
     applyTheme(nextTheme);
+    return;
+  }
+
+  if (!document.startViewTransition) {
+    applyTheme(nextTheme);
+    document.documentElement.animate([{ opacity: 0.55 }, { opacity: 1 }], {
+      duration: 900,
+      easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+    });
     return;
   }
 
