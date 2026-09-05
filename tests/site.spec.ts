@@ -85,15 +85,19 @@ test("package demos model rolling digits and a kinetic infinite marquee", async 
   const reels = page.locator(".digit-reel");
   await expect(reels.first()).toBeVisible();
   const before = await reels.evaluateAll((elements) =>
-    elements.map((element) => getComputedStyle(element).transform),
+    elements.map((element) => element.getAttribute("style")),
   );
   await page.getByRole("button", { name: "Roll to a new number" }).click();
   await expect(page.locator(".rolling-number")).toHaveAttribute("aria-label", "32,547");
-  await page.waitForTimeout(120);
   const after = await reels.evaluateAll((elements) =>
-    elements.map((element) => getComputedStyle(element).transform),
+    elements.map((element) => element.getAttribute("style")),
   );
+  const reelDuration = await reels.first().evaluate((element) => {
+    const duration = getComputedStyle(element).transitionDuration;
+    return Number.parseFloat(duration) * (duration.endsWith("ms") ? 1 : 1_000);
+  });
   expect(after).not.toEqual(before);
+  expect(reelDuration).toBeGreaterThanOrEqual(800);
 
   await expect(page.getByRole("slider")).toHaveCount(0);
   const marquee = page.locator("[data-kinetic-marquee]");
