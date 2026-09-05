@@ -195,9 +195,9 @@ function Home() {
           <p className="eyebrow">Now</p>
           <h2>Building markets, native interactions, and the systems behind both.</h2>
           <p>
-            I’m based in San Francisco, leading GameStock and maintaining open-source React Native
-            packages. I’m always interested in ambitious products, strange technical problems, and
-            people who care about craft.
+            I’m leading GameStock and maintaining open-source React Native packages. I’m always
+            interested in ambitious products, strange technical problems, and people who care about
+            craft.
           </p>
           <div className="now-actions">
             <Button asChild className="primary-button" size="lg">
