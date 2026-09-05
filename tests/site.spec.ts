@@ -66,6 +66,28 @@ test("hero metadata shares one text column", async ({ page }) => {
   expect(Math.abs((textStarts[0] ?? 0) - (textStarts[1] ?? 0))).toBeLessThanOrEqual(1);
 });
 
+test("work-card proof labels stay on one line", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.goto("/");
+
+  const label = page
+    .locator(".work-card")
+    .filter({ hasText: "Zen Shuttles" })
+    .locator(".work-card-proof span");
+  const layout = await label.evaluate((element) => {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    return {
+      cardRight: element.closest(".work-card")?.getBoundingClientRect().right ?? 0,
+      labelRight: range.getBoundingClientRect().right,
+      lineCount: range.getClientRects().length,
+    };
+  });
+
+  expect(layout.lineCount).toBe(1);
+  expect(layout.labelRight).toBeLessThan(layout.cardRight);
+});
+
 test("download metrics never collide with their actions", async ({ page }) => {
   await page.goto("/");
 
