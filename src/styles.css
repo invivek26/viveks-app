@@ -1678,6 +1678,60 @@ ol {
   text-transform: uppercase;
 }
 
+.case-recognition > ol {
+  border-top: 1px solid var(--line-strong);
+  list-style: none;
+}
+
+.case-recognition li {
+  padding-block: 1.2rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.recognition-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.recognition-meta strong {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 530;
+  letter-spacing: -0.04em;
+}
+
+.recognition-meta span,
+.case-recognition li > p {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.case-recognition li > h3 {
+  margin-top: 0.55rem;
+  font-size: 0.92rem;
+  font-weight: 760;
+}
+
+.case-recognition li > p {
+  margin-top: 0.25rem;
+}
+
+.case-recognition li > a {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.7rem;
+  gap: 0.35rem;
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 740;
+}
+
+.case-recognition li > a svg {
+  width: 0.8rem;
+}
+
 .case-build ul {
   display: grid;
   border-top: 1px solid var(--line-strong);

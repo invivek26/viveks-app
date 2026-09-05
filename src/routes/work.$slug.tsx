@@ -92,6 +92,30 @@ function WorkCaseStudy() {
         </dl>
       </section>
 
+      {work.recognition.length ? (
+        <section className="shell case-section case-recognition">
+          <div>
+            <p className="eyebrow">Recognition</p>
+            <h2>{work.recognitionHeading}</h2>
+          </div>
+          <ol>
+            {work.recognition.map((award) => (
+              <li key={award.name}>
+                <div className="recognition-meta">
+                  <strong>${award.amount / 1_000}K</strong>
+                  <span>{award.period}</span>
+                </div>
+                <h3>{award.name}</h3>
+                <p>{award.detail}</p>
+                <a href={award.href} rel="noreferrer" target="_blank">
+                  ASU source <ArrowUpRight aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ) : null}
+
       <section className="shell case-section case-build">
         <div>
           <p className="eyebrow">What shipped</p>

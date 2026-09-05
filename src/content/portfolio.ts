@@ -12,6 +12,15 @@ export type PortfolioWork = {
   contribution: string;
   outcomes: ReadonlyArray<{ value: string; label: string }>;
   highlights: ReadonlyArray<string>;
+  recognitionHeading: string;
+  recognition: ReadonlyArray<{
+    name: string;
+    period: string;
+    amount: number;
+    awardCount: number;
+    detail: string;
+    href: string;
+  }>;
   stack: ReadonlyArray<string>;
   links: ReadonlyArray<{ label: string; href: string }>;
   accent: "market" | "transit";
@@ -93,6 +102,8 @@ export const portfolio = {
         "Established product analytics and release engineering with PostHog, AppsFlyer, Sentry, automated native and backend deployments, and 18 critical end-to-end flows.",
         "Brought recent CI to a 2.5-minute average with 95%+ success across more than 1,000 monthly runs.",
       ],
+      recognitionHeading: "",
+      recognition: [],
       stack: [
         "React Native",
         "Expo",
@@ -117,7 +128,7 @@ export const portfolio = {
       period: "May 2022 — Dec 2023",
       location: "Tempe, AZ",
       summary:
-        "A campus ride-pooling service that coordinated riders, drivers, schedules, and real-time operations around Arizona State University.",
+        "A campus ride-pooling service that coordinated riders, drivers, schedules, and real-time operations around Arizona State University; reached break-even in 15 months and secured $31K across four ASU venture awards.",
       heroMetric: "15 mo",
       heroLabel: "from launch to break-even",
       challenge:
@@ -126,7 +137,7 @@ export const portfolio = {
         "I co-founded Zen and owned product and engineering end to end: rider and driver apps, dispatch, payments, promotions, internal operations, analytics, and production delivery.",
       outcomes: [
         { value: "15 mo", label: "to break-even" },
-        { value: "$8K", label: "ASU eSeed funding" },
+        { value: "$31K", label: "across four ASU venture awards" },
         { value: "1st", label: "Tech Devils Pitch Showcase" },
         { value: "3", label: "production applications" },
       ],
@@ -135,6 +146,33 @@ export const portfolio = {
         "Designed the dispatch and scheduling engine to group nearby demand, enforce capacity, and deliver routes and ETAs to drivers.",
         "Reduced Maps and Places API usage through autocomplete caching, session tokens, and elimination of redundant route requests.",
         "Shipped memberships, payments, referrals, promotions, push messaging, and ride, driver, customer, and revenue analytics.",
+      ],
+      recognitionHeading: "$31K across four ASU venture awards.",
+      recognition: [
+        {
+          name: "ASU eSeed Challenge",
+          period: "Dec 2022",
+          amount: 25_000,
+          awardCount: 2,
+          detail: "Two awards: $8K and $17K",
+          href: "https://news.asu.edu/20220503-entrepreneurship-entrepreneurs-pitch-dollars-and-change",
+        },
+        {
+          name: "ASU Venture Development Grant",
+          period: "Mar 2023",
+          amount: 1_000,
+          awardCount: 1,
+          detail: "Venture development grant",
+          href: "https://news.engineering.asu.edu/2023/03/student-entrepreneurs-pitch-innovative-ideas/",
+        },
+        {
+          name: "Hool Coury Law Tech Venture Challenge",
+          period: "Apr 2023",
+          amount: 5_000,
+          awardCount: 1,
+          detail: "Pitch competition award",
+          href: "https://entrepreneurship.engineering.asu.edu/hool-coury-law-tech-venture-challenge/",
+        },
       ],
       stack: [
         "React Native",
