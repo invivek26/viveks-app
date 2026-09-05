@@ -46,6 +46,26 @@ test("theme transition and current-work pulse are deliberate", async ({ page }) 
     .toBe(!wasDark);
 });
 
+test("hero metadata shares one text column", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const textStarts = await page.locator(".hero-meta > span").evaluateAll((rows) =>
+    rows.map((row) => {
+      const textNode = [...row.childNodes].find(
+        (node) => node.nodeType === Node.TEXT_NODE && node.textContent?.trim(),
+      );
+      if (!textNode) return Number.NaN;
+      const range = document.createRange();
+      range.selectNodeContents(textNode);
+      return range.getBoundingClientRect().left;
+    }),
+  );
+
+  expect(textStarts).toHaveLength(2);
+  expect(Math.abs((textStarts[0] ?? 0) - (textStarts[1] ?? 0))).toBeLessThanOrEqual(1);
+});
+
 test("download metrics never collide with their actions", async ({ page }) => {
   await page.goto("/");
 
