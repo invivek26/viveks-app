@@ -146,6 +146,16 @@ test("case-study technology tags stay compact and contained", async ({ page }) =
   expect(layout.overflow).toBe(false);
 });
 
+test("Zen case study presents all four ASU venture awards", async ({ page }) => {
+  await page.goto("/work/zen-shuttles");
+  await expect(
+    page.getByRole("heading", { name: "$31K across four ASU venture awards." }),
+  ).toBeVisible();
+  await expect(page.getByText("Two awards: $8K and $17K")).toBeVisible();
+  await expect(page.getByText("ASU Venture Development Grant")).toBeVisible();
+  await expect(page.getByText("Hool Coury Law Tech Venture Challenge")).toBeVisible();
+});
+
 test("package demos model rolling digits and a kinetic infinite marquee", async ({ page }) => {
   await page.goto("/open-source");
   await page.waitForTimeout(600);
