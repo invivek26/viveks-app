@@ -15,7 +15,8 @@ bun run dev
 
 ```bash
 bun run check
-bun test
+bun run test
+bun run qa
 bun run build
 bun run doctor
 ```
@@ -31,8 +32,9 @@ cookieless, disables person profiles and session replay, and captures only expli
 
 ## Delivery
 
-Pull requests run Oxfmt, Oxlint, TypeScript, tests, a production build, and React Doctor. Vercel creates preview
-deployments for branches and publishes `main` to production.
+Pull requests run Oxfmt, Oxlint, TypeScript, tests, Playwright across Chromium, Firefox, WebKit, Pixel 7, and iPhone 13,
+a production build, and React Doctor. Vercel creates preview deployments for branches and publishes `main` to
+production.
 
 ## License
 

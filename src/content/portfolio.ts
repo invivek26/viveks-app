@@ -20,8 +20,6 @@ export type PortfolioWork = {
 export const portfolio = {
   person: {
     name: "Vivek Indlebele Narasimha Prasad",
-    shortName: "Vivek Indlebele",
-    initials: "VI",
     headline: "Founder, CTO, and product engineer",
     location: "San Francisco, California",
     email: "vivek@gamestock.app",

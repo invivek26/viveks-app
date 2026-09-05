@@ -26,6 +26,8 @@ jobs:
 
       - run: bun ci
       - run: bun run check
-      - run: bun test
+      - run: bun run test
       - run: bun run build
       - run: bun run doctor
+      - run: bunx playwright install --with-deps chromium firefox webkit
+      - run: bun run qa
