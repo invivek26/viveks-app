@@ -34,7 +34,7 @@ export const portfolio = {
   },
   stats: [
     { value: "$2M", label: "pre-seed raised" },
-    { value: "20K+", label: "GameStock accounts" },
+    { value: "20K+", label: "GameStock users" },
     { value: "150K+", label: "tournament joins" },
     { value: "16K+", label: "npm downloads" },
   ],
@@ -75,7 +75,7 @@ export const portfolio = {
       summary:
         "A fantasy stock and crypto tournament platform where players compete on market insight, not starting capital.",
       heroMetric: "20K+",
-      heroLabel: "accounts built from zero",
+      heroLabel: "users built from zero",
       challenge:
         "Turn live market movement into a trustworthy competition product—with fast transactions, real money flows, understandable outcomes, and mobile releases that could keep pace with the company.",
       contribution:

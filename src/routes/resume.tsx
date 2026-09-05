@@ -53,7 +53,7 @@ function Resume() {
         <p>
           Hands-on founder and software engineer building production systems across mobile, backend,
           payments, analytics, and release engineering. Co-founded two startups, scaled GameStock
-          past 20K accounts, and maintains React Native packages with 16K+ cumulative npm downloads.
+          past 20K users, and maintains React Native packages with 16K+ cumulative npm downloads.
         </p>
       </section>
 
