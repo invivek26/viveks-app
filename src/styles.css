@@ -431,14 +431,14 @@ ol {
 
 .availability-dot {
   position: relative;
-  padding-left: 1.05rem;
+  padding-left: 1.45rem;
 }
 
 .availability-dot::before,
 .availability-dot::after {
   position: absolute;
   top: 50%;
-  left: 0;
+  left: 0.26rem;
   width: 0.48rem;
   height: 0.48rem;
   background: #49b37c;
